@@ -37,14 +37,17 @@ iOS 27.2 or later. DuoFlex is designed for iPhone Duo, using the fold of the inn
 
 ## About this site
 
-The landing page is a single static file, `index.html`, with its images in `assets/`. It has no build step and makes no requests to other sites.
+The site is three static pages that share one stylesheet. It has no build step and makes no requests to other sites.
 
 - **Preview:** open `index.html` in a browser.
 - **Publish:** serve the repository root with GitHub Pages, or any static host.
 
 | Path | Contents |
 | --- | --- |
-| `index.html` | The page, with its styles and illustrations inline. |
+| `index.html` | The landing page, with its illustrations inline. |
+| `privacy.html` | The privacy policy. |
+| `support.html` | Frequently asked questions and how to get in touch. |
+| `assets/site.css` | Styles shared by every page. |
 | `assets/icon.png` | App icon, 512 px. |
 | `assets/apple-touch-icon.png` | Home Screen icon for the site, 180 px. |
 | `assets/favicon.png` | Browser tab icon, 64 px. |
