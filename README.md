@@ -23,7 +23,11 @@ This repository holds the DuoFlex landing page. DuoFlex is coming soon to the Ap
 - **LUTs:** four built in, plus import for your own 3D `.cube` files, with adjustable strength.
 - **Camera controls:** live aperture and shutter readouts, ISO from 50 to 3200, white balance presets, and 0.5×, 1×, and 2× lenses.
 - **Grid, mirror, and self-timer:** thirds, 4×4, or center grids; a mirrored image like a classic reflex finder; and a 2 s or 10 s timer.
-- **Files with their story:** HEIF or JPEG, with the camera's EXIF data, the look you used, and — if you allow it — where you took the photo.
+- **Tap to focus and meter**, and **match-needle metering** on the EV scale with a fixed ISO.
+- **Roll mode:** commit to one film for a roll of 24 exposures, with a frame counter and a notice when it's finished.
+- **Camera Control:** on iPhones that have it, adjust exposure compensation and film without touching the screen.
+- **Files with their story:** HEIF or JPEG, optionally with a RAW (DNG) file as a RAW+HEIF pair, all with the camera's EXIF data, the look you used, and — if you allow it — where you took the photo.
+- **Film profiles:** export each film simulation as a `.cube` profile to apply its color to your RAW files in other editors.
 
 ## Privacy
 

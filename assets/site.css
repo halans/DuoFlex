@@ -141,6 +141,7 @@ h2 {
 .tile .code.boxed { border: 1.5px solid #c0c0c0; border-radius: 8px; padding: 6px 10px; }
 .tile .code.chip { background: #d9d9d9; color: #000; border-radius: 4px; padding: 3px 7px; font-size: 20px; }
 .tile .code.yellow { color: var(--peaking); }
+.tile .code.amber { color: #ff9e38; }
 .tile h3 { margin: 0 0 6px; font-size: 18px; }
 .tile p { margin: 0; color: var(--label); font-size: 15.5px; }
 
