@@ -215,7 +215,7 @@
               <img src="assets/favicon.png" alt="" width="40" height="40">
               <div><small>Coming soon</small><strong>App Store</strong></div>
             </div>
-            <span class="requires">Requires iPhone Duo with iOS 27.2 or later.</span>
+            <span class="requires">Made for iPhone Duo with iOS 27.2 or later. Also runs on other iPhones.</span>
           </div>
         </div>
 
@@ -229,12 +229,21 @@
               <stop offset="0.5" stop-color="#6c654f"/>
               <stop offset="1" stop-color="#2d2b22"/>
             </linearGradient>
+            <linearGradient id="thumb" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#6a7f9c"/>
+              <stop offset="0.55" stop-color="#c3b493"/>
+              <stop offset="0.56" stop-color="#5e5845"/>
+              <stop offset="1" stop-color="#2d2b22"/>
+            </linearGradient>
             <clipPath id="glass"><polygon points="118,268 402,268 468,462 52,462"/></clipPath>
           </defs>
 
           <!-- Upright half -->
           <rect x="104" y="34" width="312" height="226" rx="16" fill="#050505" stroke="#2b2b2b" stroke-width="3"/>
           <text x="126" y="62" fill="#e6e6e6" font-size="13" font-family="-apple-system, sans-serif" font-weight="600">26mm</text>
+          <!-- Hinge angle -->
+          <path d="M355 61 L369 61 M355 61 L366 50 M361 61 A6 6 0 0 0 359.3 56.7" fill="none" stroke="#cfcfcf" stroke-width="1.4" stroke-linecap="round"/>
+          <text x="398" y="62" fill="#cfcfcf" font-size="13" font-family="-apple-system, sans-serif" font-weight="600" text-anchor="end">92°</text>
           <text x="214" y="62" fill="#ffffff" font-size="13" font-family="-apple-system, sans-serif" font-weight="600">WIDE</text>
           <text x="256" y="62" fill="#777" font-size="13" font-family="-apple-system, sans-serif" font-weight="600">3:2</text>
           <text x="286" y="62" fill="#777" font-size="13" font-family="-apple-system, sans-serif" font-weight="600">SQUARE</text>
@@ -271,6 +280,19 @@
             <text x="147" y="191">MF</text><text x="259" y="191">AWB</text><text x="315" y="191">LUT</text>
             <text x="203" y="233">2×</text>
           </g>
+          <g fill="none" stroke="#fff" stroke-width="1.4" stroke-linecap="round">
+            <!-- Grid -->
+            <rect x="195" y="179" width="16" height="16" rx="1.5"/>
+            <line x1="200.3" y1="179" x2="200.3" y2="195"/><line x1="205.7" y1="179" x2="205.7" y2="195"/>
+            <line x1="195" y1="184.3" x2="211" y2="184.3"/><line x1="195" y1="189.7" x2="211" y2="189.7"/>
+            <!-- Self-timer -->
+            <circle cx="372" cy="189" r="8"/><line x1="372" y1="189" x2="375.5" y2="184.5"/><line x1="369" y1="179" x2="375" y2="179"/>
+            <!-- Mirror -->
+            <path d="M145 237 L145 223 L137 237 Z M149 237 L149 223 L157 237 Z"/>
+            <path d="M139 219 L155 219 M141.5 216.5 L139 219 L141.5 221.5 M152.5 216.5 L155 219 L152.5 221.5"/>
+          </g>
+          <!-- Last photo thumbnail -->
+          <rect x="303" y="219" width="24" height="20" rx="3" fill="url(#thumb)"/>
           <rect x="238" y="223" width="42" height="13" rx="2" fill="#d9d9d9"/>
           <text x="259" y="233" fill="#000" font-size="9" font-family="-apple-system, sans-serif" font-weight="700" text-anchor="middle">HEIF</text>
           <g stroke="#fff" stroke-width="1.5"><line x1="362" y1="225" x2="382" y2="225"/><line x1="362" y1="229" x2="382" y2="229"/><line x1="362" y1="233" x2="382" y2="233"/></g>
@@ -296,15 +318,16 @@
             <ellipse cx="96" cy="432" rx="22" ry="15" fill="rgb(0 0 0 / 0.35)" stroke="#fff" stroke-opacity="0.85" stroke-width="1.5"/>
             <ellipse cx="96" cy="432" rx="7" ry="5" fill="#ffd900"/>
             <!-- Readouts -->
-            <rect x="122" y="276" width="118" height="26" rx="5" fill="rgb(0 0 0 / 0.45)"/>
+            <rect x="122" y="276" width="156" height="26" rx="5" fill="rgb(0 0 0 / 0.45)"/>
             <g font-size="9" font-family="ui-monospace, Menlo, monospace" text-anchor="middle">
-              <text x="140" y="286" fill="#cfcfcf">FILM</text><text x="140" y="297" fill="#f2c773">CC</text>
-              <text x="178" y="286" fill="#cfcfcf">FRAME</text><text x="178" y="297" fill="#f2c773">WIDE</text>
-              <text x="218" y="286" fill="#cfcfcf">EV</text><text x="218" y="297" fill="#f2c773">0.0</text>
+              <text x="140" y="286" fill="#cfcfcf">FILM</text><text x="140" y="297" fill="#ff9e38">CC</text>
+              <text x="178" y="286" fill="#cfcfcf">FRAME</text><text x="178" y="297" fill="#ff9e38">WIDE</text>
+              <text x="218" y="286" fill="#cfcfcf">EV</text><text x="218" y="297" fill="#ff9e38">0</text>
+              <text x="256" y="286" fill="#cfcfcf">EXP</text><text x="256" y="297" fill="#ff9e38">12</text>
             </g>
           </g>
           <!-- Shutter release -->
-          <ellipse cx="420" cy="368" rx="24" ry="17" fill="#fff"/>
+          <ellipse cx="396" cy="368" rx="22" ry="16" fill="#fff"/>
         </svg>
       </div>
     </section>
@@ -361,7 +384,7 @@
           <div class="tile"><span class="code">WIDE · 3:2 · 6×6</span><h3>Three frame formats</h3><p>WIDE fills the whole viewfinder half and crops the photo to exactly what you see. 3:2 and square give you classic film frames.</p></div>
           <div class="tile"><span class="code boxed">0</span><h3>Swipe for exposure</h3><p>Swipe up or down on the ground glass to brighten or darken in third stops, from −3 to +3 EV.</p></div>
           <div class="tile"><span class="code yellow">MF</span><h3>Manual focus with peaking</h3><p>Swipe sideways to focus. Sharp edges light up in yellow, so you can zone-focus and shoot without waiting for autofocus.</p></div>
-          <div class="tile"><span class="code yellow">— ◯ —</span><h3>Level and tilt</h3><p>A circular bubble level for the viewfinder half and a horizon line for camera tilt. Both turn yellow when you're level.</p></div>
+          <div class="tile"><span class="code yellow">— ◯ —</span><h3>Level and tilt</h3><p>A circular bubble level for the viewfinder half and a horizon line for camera tilt. Both turn yellow, and you feel a tap, when you're level.</p></div>
           <div class="tile"><span class="code boxed">AUTO</span><h3>ISO, white balance, AF</h3><p>Live aperture and shutter readouts, fixed ISO from 50 to 3200, white balance presets, and continuous or manual focus.</p></div>
           <div class="tile"><span class="code">0.5× · 1× · 2×</span><h3>Lenses</h3><p>Ultra wide, wide, and a 2× crop of the main camera, with the 35mm-equivalent focal length always on show.</p></div>
           <div class="tile"><span class="code">⏱ 2s · 10s</span><h3>Self-timer</h3><p>A big countdown on the ground glass. Press the shutter again to cancel.</p></div>
@@ -407,7 +430,7 @@
         <img src="assets/icon.png" alt="DuoFlex app icon: a twin-lens reflex camera" width="112" height="112">
         <div>
           <h2>Made for iPhone Duo.</h2>
-          <p>DuoFlex needs the fold of iPhone Duo's inner display and runs in portrait on iOS 27.2 or later. Coming soon to the App Store.</p>
+          <p>DuoFlex is designed around the fold of iPhone Duo's inner display, in portrait. On other iPhones with iOS 27.2 or later, it stacks the settings above the viewfinder instead. Coming soon to the App Store.</p>
         </div>
       </div>
     </section>
