@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DuoFlex — A waist-level finder for iPhone Duo</title>
+  <meta name="description" content="DuoFlex turns iPhone Duo into a twin-lens reflex. Half-fold it, hold it at your waist, and look down into the ground glass to frame your shot.">
+  <meta name="theme-color" content="#0b0b0b">
+  <meta property="og:title" content="DuoFlex — A waist-level finder for iPhone Duo">
+  <meta property="og:description" content="Half-fold your iPhone Duo, hold it at your waist, and look down to frame your shot — like a twin-lens reflex.">
+  <meta property="og:image" content="assets/icon.png">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <style>
+    :root {
+      --bg: #0b0b0b;
+      --panel: #1c1c1c;
+      --panel-2: #262626;
+      --stroke: #363636;
+      --text: #f2f2f2;
+      --label: #cfcfcf;
+      --dim: #8d8d8d;
+      --brass: #c9a24a;
+      --accent: #f2c773;
+      --red: #d9342b;
+      --peaking: #ffd900;
+      --radius: 14px;
+      --condensed: ui-sans-serif, -apple-system, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 17px/1.55 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--accent); }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
+    .wrap { width: min(1120px, 100% - 48px); margin-inline: auto; }
+
+    .condensed {
+      font-family: var(--condensed);
+      font-stretch: condensed;
+      letter-spacing: 0.02em;
+    }
+
+    /* Header */
+    header {
+      position: sticky; top: 0; z-index: 10;
+      background: rgb(11 11 11 / 0.82);
+      backdrop-filter: saturate(140%) blur(14px);
+      -webkit-backdrop-filter: saturate(140%) blur(14px);
+      border-bottom: 1px solid #1d1d1d;
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .brand { display: flex; align-items: center; gap: 10px; color: var(--text); text-decoration: none; font-weight: 600; font-size: 19px; }
+    .brand img { width: 32px; height: 32px; border-radius: 8px; }
+    .nav ul { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; }
+    .nav ul a { color: var(--label); text-decoration: none; font-size: 15px; }
+    .nav ul a:hover { color: var(--text); }
+    @media (max-width: 640px) { .nav ul { display: none; } }
+
+    /* Hero */
+    .hero { padding: 88px 0 72px; }
+    .hero-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 56px; align-items: center; }
+    @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; } .hero { padding-top: 56px; } }
+
+    .eyebrow { color: var(--accent); font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.14em; margin: 0 0 18px; }
+    h1 {
+      font-family: var(--condensed);
+      font-stretch: condensed;
+      font-weight: 600;
+      font-size: clamp(48px, 7vw, 84px);
+      line-height: 0.98;
+      letter-spacing: -0.01em;
+      margin: 0 0 24px;
+    }
+    .lede { font-size: 20px; color: var(--label); max-width: 34em; margin: 0 0 36px; }
+
+    .cta { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 12px;
+      padding: 12px 20px 12px 14px;
+      border: 1.5px solid var(--stroke);
+      border-radius: 14px;
+      background: #000;
+    }
+    .badge img { width: 40px; height: 40px; border-radius: 10px; }
+    .badge small { display: block; color: var(--dim); font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; }
+    .badge strong { font-size: 17px; }
+    .requires { color: var(--dim); font-size: 15px; }
+
+    .device { width: 100%; max-width: 520px; justify-self: center; filter: drop-shadow(0 30px 60px rgb(0 0 0 / 0.6)); }
+
+    /* EV scale divider */
+    .scale { display: flex; justify-content: center; padding: 8px 0 0; }
+    .scale svg { width: min(520px, 90%); height: auto; }
+
+    /* Sections */
+    section { padding: 88px 0; }
+    .section-head { max-width: 40em; margin-bottom: 44px; }
+    h2 {
+      font-family: var(--condensed);
+      font-stretch: condensed;
+      font-weight: 600;
+      font-size: clamp(34px, 4.6vw, 52px);
+      line-height: 1.04;
+      margin: 0 0 14px;
+    }
+    .section-head p { color: var(--label); font-size: 19px; margin: 0; }
+
+    /* How it works */
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; counter-reset: step; list-style: none; padding: 0; margin: 0; }
+    @media (max-width: 820px) { .steps { grid-template-columns: 1fr; } }
+    .steps li {
+      background: var(--panel);
+      border-radius: var(--radius);
+      padding: 28px;
+      counter-increment: step;
+    }
+    .steps li::before {
+      content: counter(step);
+      display: inline-grid; place-items: center;
+      width: 36px; height: 36px;
+      border: 1.5px solid #bfbfbf;
+      border-radius: 9px;
+      font-family: var(--condensed); font-stretch: condensed; font-weight: 600; font-size: 20px;
+      margin-bottom: 18px;
+    }
+    .steps h3 { margin: 0 0 8px; font-size: 21px; }
+    .steps p { margin: 0; color: var(--label); }
+
+    /* Features: tiles like the status screen */
+    .tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px; }
+    .tile {
+      border: 1.5px solid var(--stroke);
+      border-radius: var(--radius);
+      padding: 24px;
+      background: #000;
+    }
+    .tile .code {
+      display: inline-block;
+      font-family: var(--condensed); font-stretch: condensed; font-weight: 600;
+      font-size: 26px; line-height: 1;
+      margin-bottom: 14px;
+    }
+    .tile .code.boxed { border: 1.5px solid #c0c0c0; border-radius: 8px; padding: 6px 10px; }
+    .tile .code.chip { background: #d9d9d9; color: #000; border-radius: 4px; padding: 3px 7px; font-size: 20px; }
+    .tile .code.yellow { color: var(--peaking); }
+    .tile h3 { margin: 0 0 6px; font-size: 18px; }
+    .tile p { margin: 0; color: var(--label); font-size: 15.5px; }
+
+    /* Film strip */
+    .films { display: flex; flex-wrap: wrap; gap: 12px; list-style: none; padding: 0; margin: 0; }
+    .films li {
+      display: flex; align-items: center; gap: 14px;
+      background: var(--panel);
+      border-radius: 12px;
+      padding: 10px 18px 10px 10px;
+    }
+    .swatch { width: 64px; height: 40px; border-radius: 6px; flex: none; }
+    .films strong { display: block; font-family: var(--condensed); font-stretch: condensed; font-size: 18px; }
+    .films span { color: var(--dim); font-size: 14px; }
+    .luts { margin-top: 28px; color: var(--label); }
+    .luts code { background: var(--panel-2); padding: 2px 6px; border-radius: 5px; font-size: 15px; }
+
+    /* Privacy */
+    .privacy { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    @media (max-width: 820px) { .privacy { grid-template-columns: 1fr; } }
+    .privacy div { border-top: 2px solid var(--brass); padding-top: 18px; }
+    .privacy h3 { margin: 0 0 6px; font-size: 19px; }
+    .privacy p { margin: 0; color: var(--label); }
+
+    /* Requirements */
+    .req { background: var(--panel); border-radius: 20px; padding: 40px; display: grid; grid-template-columns: auto 1fr; gap: 32px; align-items: center; }
+    @media (max-width: 700px) { .req { grid-template-columns: 1fr; padding: 28px; } }
+    .req img { width: 112px; height: 112px; border-radius: 26px; }
+    .req h2 { font-size: 36px; }
+    .req p { margin: 0; color: var(--label); }
+
+    footer { padding: 40px 0 56px; color: var(--dim); font-size: 14px; border-top: 1px solid #1d1d1d; margin-top: 88px; }
+    footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="wrap nav" aria-label="Main">
+      <a class="brand" href="#top"><img src="assets/favicon.png" alt="" width="32" height="32">DuoFlex</a>
+      <ul>
+        <li><a href="#how">How it works</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#film">Film</a></li>
+        <li><a href="#privacy">Privacy</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="eyebrow">For iPhone Duo</p>
+          <h1>Shoot from<br>the waist.</h1>
+          <p class="lede">DuoFlex turns iPhone Duo into a twin-lens reflex. Half-fold it with the camera half standing up, hold it at your waist, and look straight down into the ground glass to frame your shot.</p>
+          <div class="cta">
+            <div class="badge">
+              <img src="assets/favicon.png" alt="" width="40" height="40">
+              <div><small>Coming soon</small><strong>App Store</strong></div>
+            </div>
+            <span class="requires">Requires iPhone Duo with iOS 27.2 or later.</span>
+          </div>
+        </div>
+
+        <!-- A half-folded iPhone Duo: status screen on the upright half, viewfinder on the flat half. -->
+        <svg class="device" viewBox="0 0 520 500" role="img" aria-labelledby="device-title">
+          <title id="device-title">iPhone Duo half-folded, with the settings screen standing up and the viewfinder lying flat below it</title>
+          <defs>
+            <linearGradient id="scene" x1="0" y1="262" x2="0" y2="470" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#506583"/>
+              <stop offset="0.48" stop-color="#b7a988"/>
+              <stop offset="0.5" stop-color="#6c654f"/>
+              <stop offset="1" stop-color="#2d2b22"/>
+            </linearGradient>
+            <clipPath id="glass"><polygon points="118,268 402,268 468,462 52,462"/></clipPath>
+          </defs>
+
+          <!-- Upright half -->
+          <rect x="104" y="34" width="312" height="226" rx="16" fill="#050505" stroke="#2b2b2b" stroke-width="3"/>
+          <text x="126" y="62" fill="#e6e6e6" font-size="13" font-family="-apple-system, sans-serif" font-weight="600">26mm</text>
+          <text x="214" y="62" fill="#ffffff" font-size="13" font-family="-apple-system, sans-serif" font-weight="600">WIDE</text>
+          <text x="256" y="62" fill="#777" font-size="13" font-family="-apple-system, sans-serif" font-weight="600">3:2</text>
+          <text x="286" y="62" fill="#777" font-size="13" font-family="-apple-system, sans-serif" font-weight="600">SQUARE</text>
+          <rect x="122" y="74" width="276" height="86" rx="8" fill="#333"/>
+          <g fill="#e8e8e8">
+            <rect x="198" y="84" width="3" height="18"/><rect x="211" y="89" width="3" height="13"/><rect x="224" y="89" width="3" height="13"/>
+            <rect x="237" y="84" width="3" height="18"/><rect x="250" y="89" width="3" height="13"/><rect x="263" y="89" width="3" height="13"/>
+            <rect x="276" y="80" width="3" height="22"/><rect x="289" y="89" width="3" height="13"/><rect x="302" y="89" width="3" height="13"/>
+            <rect x="315" y="84" width="3" height="18"/>
+          </g>
+          <rect x="276" y="95" width="3" height="7" fill="#d9342b"/>
+          <g fill="none" stroke="#bdbdbd" stroke-width="1.5">
+            <rect x="132" y="114" width="44" height="26" rx="5"/>
+            <rect x="286" y="114" width="46" height="26" rx="5"/>
+            <rect x="340" y="114" width="48" height="26" rx="5"/>
+          </g>
+          <g fill="#fff" font-size="12" font-family="-apple-system, sans-serif" font-weight="600" text-anchor="middle">
+            <text x="154" y="131">CC</text><text x="206" y="131">1.8</text><text x="256" y="131">1/250</text>
+            <text x="309" y="131">AUTO</text><text x="364" y="131">0</text>
+          </g>
+          <g fill="#bdbdbd" font-size="8" font-family="-apple-system, sans-serif" text-anchor="middle">
+            <text x="154" y="153">FILM</text><text x="206" y="153">F</text><text x="256" y="153">S</text>
+            <text x="309" y="153">ISO</text><text x="364" y="153">EV</text>
+          </g>
+          <g fill="#000" stroke="#3a3a3a" stroke-width="1.5">
+            <rect x="122" y="170" width="50" height="34" rx="6"/><rect x="178" y="170" width="50" height="34" rx="6"/>
+            <rect x="234" y="170" width="50" height="34" rx="6"/><rect x="290" y="170" width="50" height="34" rx="6"/>
+            <rect x="346" y="170" width="52" height="34" rx="6"/>
+            <rect x="122" y="212" width="50" height="34" rx="6"/><rect x="178" y="212" width="50" height="34" rx="6"/>
+            <rect x="234" y="212" width="50" height="34" rx="6"/><rect x="290" y="212" width="50" height="34" rx="6"/>
+            <rect x="346" y="212" width="52" height="34" rx="6" fill="#1e1e1e"/>
+          </g>
+          <g fill="#fff" font-size="11" font-family="-apple-system, sans-serif" font-weight="600" text-anchor="middle">
+            <text x="147" y="191">MF</text><text x="259" y="191">AWB</text><text x="315" y="191">LUT</text>
+            <text x="203" y="233">2×</text>
+          </g>
+          <rect x="238" y="223" width="42" height="13" rx="2" fill="#d9d9d9"/>
+          <text x="259" y="233" fill="#000" font-size="9" font-family="-apple-system, sans-serif" font-weight="700" text-anchor="middle">HEIF</text>
+          <g stroke="#fff" stroke-width="1.5"><line x1="362" y1="225" x2="382" y2="225"/><line x1="362" y1="229" x2="382" y2="229"/><line x1="362" y1="233" x2="382" y2="233"/></g>
+
+          <!-- Hinge -->
+          <rect x="104" y="258" width="312" height="10" rx="3" fill="#1a1a1a"/>
+
+          <!-- Flat half, seen from above at an angle -->
+          <polygon points="110,264 410,264 480,470 40,470" fill="#050505" stroke="#2b2b2b" stroke-width="3" stroke-linejoin="round"/>
+          <g clip-path="url(#glass)">
+            <rect x="40" y="262" width="440" height="210" fill="url(#scene)"/>
+            <!-- Distant hills on the horizon -->
+            <path d="M40,366 C110,340 150,350 200,362 C250,338 300,344 340,360 C380,350 430,346 480,364 L480,368 L40,368 Z" fill="#4f4a3a"/>
+            <g stroke="#ffffff" stroke-opacity="0.55" stroke-width="1">
+              <line x1="213" y1="268" x2="191" y2="462"/><line x1="307" y1="268" x2="329" y2="462"/>
+              <line x1="96" y1="333" x2="424" y2="333"/><line x1="74" y1="398" x2="446" y2="398"/>
+            </g>
+            <!-- Tilt indicator, level -->
+            <g stroke="#ffd900" stroke-width="3" stroke-linecap="round">
+              <line x1="170" y1="366" x2="186" y2="366"/><line x1="198" y1="366" x2="322" y2="366"/><line x1="334" y1="366" x2="350" y2="366"/>
+            </g>
+            <!-- Bubble level -->
+            <ellipse cx="96" cy="432" rx="22" ry="15" fill="rgb(0 0 0 / 0.35)" stroke="#fff" stroke-opacity="0.85" stroke-width="1.5"/>
+            <ellipse cx="96" cy="432" rx="7" ry="5" fill="#ffd900"/>
+            <!-- Readouts -->
+            <rect x="122" y="276" width="118" height="26" rx="5" fill="rgb(0 0 0 / 0.45)"/>
+            <g font-size="9" font-family="ui-monospace, Menlo, monospace" text-anchor="middle">
+              <text x="140" y="286" fill="#cfcfcf">FILM</text><text x="140" y="297" fill="#f2c773">CC</text>
+              <text x="178" y="286" fill="#cfcfcf">FRAME</text><text x="178" y="297" fill="#f2c773">WIDE</text>
+              <text x="218" y="286" fill="#cfcfcf">EV</text><text x="218" y="297" fill="#f2c773">0.0</text>
+            </g>
+          </g>
+          <!-- Shutter release -->
+          <ellipse cx="420" cy="368" rx="24" ry="17" fill="#fff"/>
+        </svg>
+      </div>
+    </section>
+
+    <div class="scale" aria-hidden="true">
+      <svg viewBox="0 0 520 60">
+        <g fill="#e8e8e8">
+          <rect x="18" y="6" width="5" height="30"/><rect x="45" y="16" width="5" height="20"/><rect x="72" y="16" width="5" height="20"/>
+          <rect x="99" y="6" width="5" height="30"/><rect x="126" y="16" width="5" height="20"/><rect x="153" y="16" width="5" height="20"/>
+          <rect x="180" y="6" width="5" height="30"/><rect x="207" y="16" width="5" height="20"/><rect x="234" y="16" width="5" height="20"/>
+          <rect x="257" y="0" width="5" height="36"/>
+          <rect x="285" y="16" width="5" height="20"/><rect x="312" y="16" width="5" height="20"/><rect x="339" y="6" width="5" height="30"/>
+          <rect x="366" y="16" width="5" height="20"/><rect x="393" y="16" width="5" height="20"/><rect x="420" y="6" width="5" height="30"/>
+          <rect x="447" y="16" width="5" height="20"/><rect x="474" y="16" width="5" height="20"/><rect x="497" y="6" width="5" height="30"/>
+        </g>
+        <rect x="257" y="22" width="5" height="14" fill="#d9342b"/>
+        <g fill="#fff" font-size="15" font-family="-apple-system, sans-serif" font-weight="500" text-anchor="middle">
+          <text x="20" y="56">−3</text><text x="101" y="56">−2</text><text x="182" y="56">−1</text><text x="260" y="56">0</text>
+          <text x="341" y="56">+1</text><text x="422" y="56">+2</text><text x="499" y="56">+3</text>
+        </g>
+      </svg>
+    </div>
+
+    <section id="how">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>A camera you look down into.</h2>
+          <p>Waist-level finders slow you down in the best way. You compose on a ground glass instead of at arm's length, and the people you photograph see a camera, not a phone in their face.</p>
+        </div>
+        <ol class="steps">
+          <li>
+            <h3>Half-fold it</h3>
+            <p>Hold iPhone Duo in portrait and fold it to about 90°, with the camera half standing up and facing your subject.</p>
+          </li>
+          <li>
+            <h3>Hold it at your waist</h3>
+            <p>The upright half shows your settings. The bottom half lies flat and becomes the viewfinder, like the hood of a twin-lens reflex.</p>
+          </li>
+          <li>
+            <h3>Look down and shoot</h3>
+            <p>Frame on the ground glass, swipe to set exposure or focus, and press the shutter — or use the volume buttons.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="features">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Everything on one status screen.</h2>
+          <p>The upright half is laid out like a rangefinder's status screen, and every control opens its options in a sheet. Nothing scrolls, nothing hides.</p>
+        </div>
+        <div class="tiles">
+          <div class="tile"><span class="code">WIDE · 3:2 · 6×6</span><h3>Three frame formats</h3><p>WIDE fills the whole viewfinder half and crops the photo to exactly what you see. 3:2 and square give you classic film frames.</p></div>
+          <div class="tile"><span class="code boxed">0</span><h3>Swipe for exposure</h3><p>Swipe up or down on the ground glass to brighten or darken in third stops, from −3 to +3 EV.</p></div>
+          <div class="tile"><span class="code yellow">MF</span><h3>Manual focus with peaking</h3><p>Swipe sideways to focus. Sharp edges light up in yellow, so you can zone-focus and shoot without waiting for autofocus.</p></div>
+          <div class="tile"><span class="code yellow">— ◯ —</span><h3>Level and tilt</h3><p>A circular bubble level for the viewfinder half and a horizon line for camera tilt. Both turn yellow when you're level.</p></div>
+          <div class="tile"><span class="code boxed">AUTO</span><h3>ISO, white balance, AF</h3><p>Live aperture and shutter readouts, fixed ISO from 50 to 3200, white balance presets, and continuous or manual focus.</p></div>
+          <div class="tile"><span class="code">0.5× · 1× · 2×</span><h3>Lenses</h3><p>Ultra wide, wide, and a 2× crop of the main camera, with the 35mm-equivalent focal length always on show.</p></div>
+          <div class="tile"><span class="code">⏱ 2s · 10s</span><h3>Self-timer</h3><p>A big countdown on the ground glass. Press the shutter again to cancel.</p></div>
+          <div class="tile"><span class="code chip">HEIF</span><h3>Files with their story</h3><p>HEIF or JPEG, with the camera's EXIF data, the look you used, and — if you allow it — where you took the photo.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="film">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Seven film stocks, and your own LUTs.</h2>
+          <p>Film simulations render live on the ground glass, grain and all, and the same pipeline develops your photo.</p>
+        </div>
+        <ul class="films">
+          <li><span class="swatch" style="background: linear-gradient(135deg, #8c9999, #594d40)"></span><div><strong>Classic Chrome</strong><span>Muted color, firm shadows</span></div></li>
+          <li><span class="swatch" style="background: linear-gradient(135deg, #fad1ad, #998c73)"></span><div><strong>Portra 400</strong><span>Warm, soft, kind to skin</span></div></li>
+          <li><span class="swatch" style="background: linear-gradient(135deg, #ff8c33, #3373cc)"></span><div><strong>Ektar 100</strong><span>Punchy and fine grained</span></div></li>
+          <li><span class="swatch" style="background: linear-gradient(135deg, #1a994d, #bf1a66)"></span><div><strong>Velvia 50</strong><span>Saturated slide film</span></div></li>
+          <li><span class="swatch" style="background: linear-gradient(135deg, #335999, #e64033)"></span><div><strong>CineStill 800T</strong><span>Tungsten, with red halation</span></div></li>
+          <li><span class="swatch" style="background: linear-gradient(135deg, #f2f2f2, #0d0d0d)"></span><div><strong>Tri-X 400</strong><span>Gritty black and white</span></div></li>
+          <li><span class="swatch" style="background: linear-gradient(135deg, #cccccc, #404040)"></span><div><strong>Acros 100</strong><span>Smooth black and white</span></div></li>
+        </ul>
+        <p class="luts">Plus four built-in LUTs — Teal &amp; Orange, Bleach Bypass, Faded Matte, and Day for Night — and import for your own 3D <code>.cube</code> files, with adjustable strength.</p>
+      </div>
+    </section>
+
+    <section id="privacy">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Your photos stay yours.</h2>
+        </div>
+        <div class="privacy">
+          <div><h3>No account</h3><p>There's nothing to sign up for, and DuoFlex doesn't collect analytics.</p></div>
+          <div><h3>Straight to Photos</h3><p>Photos are saved to your library on your device. DuoFlex only asks to add photos, never to read them.</p></div>
+          <div><h3>Location is optional</h3><p>Allow location only if you want photos tagged with where you took them. Everything else works without it.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap req">
+        <img src="assets/icon.png" alt="DuoFlex app icon: a twin-lens reflex camera" width="112" height="112">
+        <div>
+          <h2>Made for iPhone Duo.</h2>
+          <p>DuoFlex needs the fold of iPhone Duo's inner display and runs in portrait on iOS 27.2 or later. Coming soon to the App Store.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>© 2026 DuoFlex</span>
+      <span>iPhone is a trademark of Apple Inc.</span>
+    </div>
+  </footer>
+</body>
+</html>
