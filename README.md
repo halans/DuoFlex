@@ -4,7 +4,7 @@
 
 <img src="assets/icon.png" alt="DuoFlex app icon: a twin-lens reflex camera" width="128" height="128">
 
-DuoFlex turns iPhone Duo into a twin-lens reflex. Half-fold the phone with the camera half standing up and facing your subject, hold it at your waist, and look straight down into the bottom half to frame your shot. The upright half shows your settings, laid out like a rangefinder's status screen. The flat half is the ground glass and the shutter release.
+DuoFlex turns iPhone Duo into a twin-lens reflex. Half-fold the phone with the camera half standing up and facing your subject, hold it at your waist, and look straight down into the bottom half to frame your shot. The upright half shows your settings, laid out like a camera's status screen in one of five styles. The flat half is the ground glass and the shutter release.
 
 This repository holds the DuoFlex landing page. DuoFlex is coming soon to the App Store.
 
@@ -27,6 +27,7 @@ This repository holds the DuoFlex landing page. DuoFlex is coming soon to the Ap
 - **Roll mode:** commit to one film for a roll of 24 exposures, with a frame counter and a notice when it's finished.
 - **Camera Control:** on iPhones that have it, adjust exposure compensation and film without touching the screen.
 - **Files with their story:** HEIF or JPEG, optionally with a RAW (DNG) file as a RAW+HEIF pair, all with the camera's EXIF data, the look you used, and — if you allow it — where you took the photo.
+- **Five screen styles:** lay out the upright half as Rangefinder, Control Panel, Info Strip, Large Type, or Tile Grid, chosen in the Menu.
 - **Film profiles:** export each film simulation as a `.cube` profile to apply its color to your RAW files in other editors.
 
 ## Privacy
@@ -54,6 +55,8 @@ The site is three static pages that share one stylesheet. It has no build step a
 | `assets/site.css` | Styles shared by every page. |
 | `assets/icon.png` | App icon, 512 px. |
 | `assets/apple-touch-icon.png` | Home Screen icon for the site, 180 px. |
-| `assets/favicon.png` | Browser tab icon, 64 px. |
+| `assets/favicon.ico` | Browser tab icon, 16, 32, and 48 px. |
+| `assets/favicon-192.png` | Browser tab icon for high-resolution displays, 192 px. |
+| `assets/favicon.png` | The icon in the navigation bar, 64 px. |
 
 iPhone is a trademark of Apple Inc.
