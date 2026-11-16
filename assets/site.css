@@ -180,7 +180,7 @@ h2 {
 /* Requirements */
 .req { background: var(--panel); border-radius: 20px; padding: 40px; display: grid; grid-template-columns: auto 1fr; gap: 32px; align-items: center; }
 @media (max-width: 700px) { .req { grid-template-columns: 1fr; padding: 28px; } }
-.req img { width: 112px; height: 112px; border-radius: 26px; }
+.req img.icon { width: 112px; height: 112px; border-radius: 26px; }
 .req h2 { font-size: 36px; }
 .req p { margin: 0; color: var(--label); }
 
