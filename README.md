@@ -17,7 +17,7 @@ This repository holds the DuoFlex landing page. DuoFlex is coming soon to the Ap
 ## Features
 
 - **Three frame formats:** WIDE fills the whole viewfinder half and crops the photo to exactly what you see; 3:2 and 6×6 square give you classic film frames.
-- **Swipe to adjust:** swipe up or down on the viewfinder for exposure compensation in ⅓-stop steps (−3 to +3 EV). In manual focus, swipe sideways to focus, with yellow focus peaking on sharp edges.
+- **Swipe to adjust:** swipe left or right on the viewfinder for exposure compensation in ⅓-stop steps (−3 to +3 EV). In manual focus, swipe up or down to focus, with yellow focus peaking on sharp edges.
 - **Level and tilt:** a circular bubble level and a horizon line that turn yellow, with a gentle tap, when you're level.
 - **Film simulations:** Faded Chrome, Portrait 400, Vivid 100, Slide 50, Tungsten 800T, Grit 400, and Silver 100, rendered live with grain.
 - **LUTs:** four built in, plus import for your own 3D `.cube` files, with adjustable strength.
