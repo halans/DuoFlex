@@ -1,4 +1,4 @@
-# DuoFlex
+# DuoFlex Website
 
 **A waist-level finder camera for iPhone Duo.**
 
