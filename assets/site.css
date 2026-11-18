@@ -72,16 +72,10 @@ h1 {
 .lede { font-size: 20px; color: var(--label); max-width: 34em; margin: 0 0 36px; }
 
 .cta { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px; }
-.badge {
-  display: inline-flex; align-items: center; gap: 12px;
-  padding: 12px 20px 12px 14px;
-  border: 1.5px solid var(--stroke);
-  border-radius: 14px;
-  background: #000;
-}
-.badge img { width: 40px; height: 40px; border-radius: 10px; }
-.badge small { display: block; color: var(--dim); font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; }
-.badge strong { font-size: 17px; }
+/* Apple's "Download on the App Store" badge, at a size its guidelines allow. */
+.app-store-badge { display: inline-block; line-height: 0; }
+.app-store-badge img { height: 60px; width: auto; }
+.app-store-badge:hover { filter: brightness(1.15); }
 .requires { color: var(--dim); font-size: 15px; }
 
 .device { width: 100%; max-width: 520px; justify-self: center; filter: drop-shadow(0 30px 60px rgb(0 0 0 / 0.6)); }

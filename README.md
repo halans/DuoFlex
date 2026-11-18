@@ -6,7 +6,7 @@
 
 DuoFlex turns iPhone Duo into a twin-lens reflex. Half-fold the phone with the camera half standing up and facing your subject, hold it at your waist, and look straight down into the bottom half to frame your shot. The upright half shows your settings, laid out like a camera's status screen in one of five styles. The flat half is the ground glass and the shutter release.
 
-This repository holds the DuoFlex landing page. DuoFlex is coming soon to the App Store.
+This repository holds the DuoFlex landing page. [Get DuoFlex on the App Store](https://apps.apple.com/app/duoflex-camera/id6835378050).
 
 ## How it works
 
@@ -16,7 +16,7 @@ This repository holds the DuoFlex landing page. DuoFlex is coming soon to the Ap
 
 ## Features
 
-- **Three frame formats:** WIDE fills the whole viewfinder half and crops the photo to exactly what you see; 3:2 and 6×6 square give you classic film frames.
+- **Frame formats:** 3:2 and 6×6 square give you classic film frames. On iPhone Duo, WIDE fills the whole flat half and crops the photo to exactly what you see.
 - **Swipe to adjust:** swipe left or right on the viewfinder for exposure compensation in ⅓-stop steps (−3 to +3 EV). In manual focus, swipe up or down to focus, with yellow focus peaking on sharp edges.
 - **Level and tilt:** a circular bubble level and a horizon line that turn yellow, with a gentle tap, when you're level.
 - **Film simulations:** Faded Chrome, Portrait 400, Vivid 100, Slide 50, Tungsten 800T, Grit 400, and Silver 100, rendered live with grain.
@@ -58,5 +58,6 @@ The site is three static pages that share one stylesheet. It has no build step a
 | `assets/favicon.ico` | Browser tab icon, 16, 32, and 48 px. |
 | `assets/favicon-192.png` | Browser tab icon for high-resolution displays, 192 px. |
 | `assets/favicon.png` | The icon in the navigation bar, 64 px. |
+| `assets/app-store-badge.svg` | Apple's "Download on the App Store" badge. |
 
 iPhone is a trademark of Apple Inc.
