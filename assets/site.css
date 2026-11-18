@@ -219,3 +219,33 @@ footer a:hover { color: var(--text); }
 }
 .button:hover { filter: brightness(1.06); }
 .doc th:first-child, .doc td:first-child { width: 30%; }
+
+/* Screenshot gallery: a row that snaps to each screenshot, scrolled by swiping, trackpad, keyboard, or the arrows. */
+.gallery-frame { position: relative; }
+.gallery {
+  display: flex; gap: 20px;
+  overflow-x: auto; overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory; scroll-behavior: smooth;
+  padding: 4px max(24px, calc((100% - 1120px) / 2)) 20px;
+  scroll-padding-inline: max(24px, calc((100% - 1120px) / 2));
+  scrollbar-width: thin; scrollbar-color: var(--stroke) transparent;
+}
+.gallery:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.shot { flex: 0 0 auto; width: clamp(220px, 28vw, 300px); margin: 0; scroll-snap-align: start; }
+.shot img {
+  display: block; width: 100%; height: auto;
+  border-radius: 18px; border: 1px solid var(--stroke); background: #000;
+}
+.shot figcaption { margin-top: 12px; color: var(--dim); font-size: 15px; line-height: 1.4; }
+.shot figcaption strong { display: block; color: var(--text); font-size: 16px; }
+.gallery-nav {
+  position: absolute; top: calc(50% - 40px); transform: translateY(-50%);
+  width: 44px; height: 44px; border-radius: 50%;
+  border: 1px solid var(--stroke); background: rgba(11, 11, 11, 0.85); color: var(--text);
+  font-size: 26px; line-height: 1; cursor: pointer;
+}
+.gallery-nav:hover { background: var(--panel-2); }
+.gallery-nav.prev { left: 12px; }
+.gallery-nav.next { right: 12px; }
+@media (hover: none) { .gallery-nav { display: none; } }
+@media (prefers-reduced-motion: reduce) { .gallery { scroll-behavior: auto; } }
