@@ -19,7 +19,7 @@ This repository holds the DuoFlex landing page. [Get DuoFlex on the App Store](h
 - **Frame formats:** 3:2 and 6×6 square give you classic film frames. On iPhone Duo, WIDE fills the whole flat half and crops the photo to exactly what you see.
 - **Swipe to adjust:** swipe left or right on the viewfinder for exposure compensation in ⅓-stop steps (−3 to +3 EV). In manual focus, swipe up or down to focus, with yellow focus peaking on sharp edges.
 - **Level and tilt:** a circular bubble level and a horizon line that turn yellow, with a gentle tap, when you're level.
-- **Film simulations:** Faded Chrome, Portrait 400, Vivid 100, Slide 50, Tungsten 800T, Grit 400, and Silver 100, rendered live with grain.
+- **Film simulations:** Faded Chrome, Portrait 400, Vivid 100, Slide 50, Tungsten 800T, Cinema, Grit 400, Docu 400, and Silver 100, rendered live with grain.
 - **LUTs:** four built in, plus import for your own 3D `.cube` files, with adjustable strength.
 - **Camera controls:** live aperture and shutter readouts, ISO from 50 to 3200, white balance presets, and 0.5×, 1×, and 2× lenses.
 - **Grid, mirror, and self-timer:** thirds, 4×4, or center grids; a mirrored image like a classic reflex finder; and a 2 s or 10 s timer.
